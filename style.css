@@ -1,0 +1,21 @@
+.library {
+    width: 70%;
+    margin-left: 15%;
+}
+
+.add-book {
+    margin-left: 15%;
+    width: 70%;
+    margin-top: 20px;
+    height: 30px;
+}
+
+.new-book-form {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 20px;
+}
+
+.new-book-form label {
+    margin-left: 10px;
+}

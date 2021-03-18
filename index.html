@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <table class="library">
+            <tr>
+                <th style="width: 30%; text-align: left">Title</th>
+                <th style="width: 30%; text-align: left">Author</th>
+                <th style="width: 10%; text-align: left"># of pages</th>
+                <th style="width: 10%; text-align: left">Status</th>
+                <th style="width: 15%">Change Status</th>
+                <th style="width: 5%">Delete</th>
+            </tr>
+        </table>
+
+        <form class="new-book-form" action="">
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" />
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author" />
+            <label for="pages">Pages:</label>
+            <input type="text" name="pages" id="pages" />
+            <label for="finished">Finished:</label>
+            <label for="finished">True</label>
+            <input
+                type="radio"
+                name="finished"
+                id="finished-true"
+                value="true"
+            />
+            <label for="finished">False</label>
+            <input
+                type="radio"
+                name="finished"
+                id="finished-false"
+                value="false"
+            />
+        </form>
+
+        <button class="add-book">Add a new Book</button>
+
+        <script src="./script.js"></script>
+    </body>
+</html>
