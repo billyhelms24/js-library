@@ -65,12 +65,14 @@ const Library = (() => {
                 this.finished = true;
             }
             DisplayController.updateDisplay();
+            updateStorage();
         }
     }
 
     const removeBook = (index) => {
         library.splice(index, 1);
         DisplayController.updateDisplay();
+        updateStorage();
     };
 
     const addBook = () => {
@@ -86,18 +88,52 @@ const Library = (() => {
 
         new Book(title, author, pages, finished);
         DisplayController.updateDisplay();
+        updateStorage();
     };
 
     document.querySelector(".add-book").addEventListener("click", addBook);
 
-    new Book("Eragon", "Christopher Paolini", 200, true);
-    new Book("Eldest", "Christopher Paolini", 350, true);
-    new Book("Brisingr", "Christopher Paolini", 450, true);
-    new Book("Inheritance", "Christopher Paolini", 550, true);
-    new Book(
-        "The Fork, the Witch, and the Worm",
-        "Christopher Paolini",
-        150,
-        false
-    );
+    const createStorage = () => {
+        library.forEach((book) => {
+            for (let prop in book) {
+                localStorage.setItem(
+                    `${library.indexOf(book)}${prop}`,
+                    `${book[prop]}`
+                );
+            }
+        });
+        console.log(localStorage);
+    };
+
+    const loadStorage = () => {
+        for (let i = 0; i < localStorage.length / 4; i++) {
+            new Book(
+                localStorage.getItem(`${i}title`),
+                localStorage.getItem(`${i}author`),
+                localStorage.getItem(`${i}pages`),
+                localStorage.getItem(`${i}finished`)
+            );
+        }
+    };
+
+    const updateStorage = () => {
+        localStorage.clear();
+        createStorage();
+    };
+
+    if (!localStorage.getItem("0author")) {
+        new Book("Eragon", "Christopher Paolini", 200, true);
+        new Book("Eldest", "Christopher Paolini", 350, true);
+        new Book("Brisingr", "Christopher Paolini", 450, true);
+        new Book("Inheritance", "Christopher Paolini", 550, true);
+        new Book(
+            "The Fork, the Witch, and the Worm",
+            "Christopher Paolini",
+            150,
+            false
+        );
+        createStorage();
+    } else {
+        loadStorage();
+    }
 })();
