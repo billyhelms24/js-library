@@ -2,16 +2,14 @@ const Library = (() => {
     let library = [];
 
     const DisplayController = (() => {
-        const table = document.querySelector("table");
+        const table = document.querySelector("tbody");
         const rows = () => {
             return table.querySelectorAll("tr");
         };
 
         const updateDisplay = () => {
             rows().forEach((row) => {
-                if (row !== rows()[0]) {
-                    row.remove();
-                }
+                row.remove();
             });
 
             library.forEach((book) => {
@@ -21,6 +19,23 @@ const Library = (() => {
                     td.textContent = book[prop];
                     tr.appendChild(td);
                 }
+
+                let changeBtn = document.createElement("button");
+                changeBtn.textContent = "change";
+                let tdChange = document.createElement("td");
+                tdChange.appendChild(changeBtn);
+                tr.appendChild(tdChange);
+
+                let delBtn = document.createElement("button");
+                delBtn.textContent = "del";
+                delBtn.addEventListener("click", () => {
+                    removeBook(tr.dataset.index);
+                });
+                let tdDel = document.createElement("td");
+                tdDel.appendChild(delBtn);
+                tr.appendChild(tdDel);
+                tr.dataset.index = rows().length;
+
                 table.appendChild(tr);
             });
         };
@@ -51,6 +66,7 @@ const Library = (() => {
 
     const removeBook = (index) => {
         library.splice(index, 1);
+        DisplayController.updateDisplay();
     };
 
     new Book("Eragon", "Christopher Paolini", 200, true);
