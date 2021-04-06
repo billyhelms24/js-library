@@ -1,4 +1,63 @@
-let myLibrary = [];
+const Library = (() => {
+    let library = [];
+
+    const DisplayController = (() => {
+        const table = document.querySelector("table");
+        const rows = () => {
+            return table.querySelectorAll("tr");
+        };
+
+        const updateDisplay = () => {
+            rows().forEach((row) => {
+                if (row !== rows()[0]) {
+                    row.remove();
+                }
+            });
+
+            library.forEach((book) => {
+                let tr = document.createElement("tr");
+                for (const prop in book) {
+                    let td = document.createElement("td");
+                    td.textContent = book[prop];
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            });
+        };
+
+        return {
+            updateDisplay,
+        };
+    })();
+
+    class Book {
+        constructor(title, author, pages, finished) {
+            this.title = title;
+            this.author = author;
+            this.pages = pages;
+            this.finished = finished;
+            library.push(this);
+            DisplayController.updateDisplay();
+        }
+
+        changeStatus() {
+            if (this.finished) {
+                this.finished = false;
+            } else {
+                this.finished = true;
+            }
+        }
+    }
+
+    const removeBook = (index) => {
+        library.splice(index, 1);
+    };
+
+    new Book("Eragon", "Christopher Paolini", 200, true);
+    new Book("Eldest", "Christopher Paolini", 350, true);
+})();
+
+/* let myLibrary = [];
 const table = document.querySelector("table");
 const newBookBtn = document.querySelector(".add-book");
 
@@ -103,4 +162,4 @@ myLibrary[4] = new Book(
     "150",
     false
 );
-displayBooks();
+displayBooks(); */
