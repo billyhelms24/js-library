@@ -92,4 +92,12 @@ const Library = (() => {
 
     new Book("Eragon", "Christopher Paolini", 200, true);
     new Book("Eldest", "Christopher Paolini", 350, true);
+    new Book("Brisingr", "Christopher Paolini", 450, true);
+    new Book("Inheritance", "Christopher Paolini", 550, true);
+    new Book(
+        "The Fork, the Witch, and the Worm",
+        "Christopher Paolini",
+        150,
+        false
+    );
 })();
