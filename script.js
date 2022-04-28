@@ -132,6 +132,7 @@ const Library = (() => {
             150,
             false
         );
+        console.log(library);
         createStorage();
     } else {
         loadStorage();
